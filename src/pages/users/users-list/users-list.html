@@ -1,0 +1,40 @@
+<ion-header color="primary" >
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>My Family Members</ion-title>
+        </ion-navbar>
+      </ion-header>
+
+
+<ion-content>
+    <ion-grid>
+      <button ion-item *ngFor="let user of users" (click)="userTapped(user)">
+      <ion-row>
+         <ion-col>
+             <div>
+                <img src={{user.img}} style="height: 100px; width: 100px; border-radius: 50%; "/>
+             </div>
+         </ion-col>   
+         <ion-col>
+            <div class="status" style="float: right;">
+                <br>
+                {{user.firstName}} {{user.lastName}}
+                <br>
+                {{user.gender}}
+                <!-- <br>
+                {{user.startDate}}  To  {{user.endDate}} -->
+                <br>
+                {{user.type}}
+            </div>
+          </ion-col>
+          <ion-col>
+            <div style="text-align: center; padding-top: 10px;">
+              <ion-icon name={{getIconName(user.status)}} color={{getColorName(user.status)}}></ion-icon>
+            </div>
+          </ion-col>
+        </ion-row>
+      </button>
+    </ion-grid>
+  </ion-content>

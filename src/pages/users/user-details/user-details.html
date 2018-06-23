@@ -1,0 +1,43 @@
+<ion-header >
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>My Details</ion-title>
+        </ion-navbar>
+</ion-header>
+<ion-content>
+
+    <ion-grid>
+        <ion-row style="height: 200px;">
+            <ion-col style="text-align: center; background-color: #F5F5F5;">
+                <img src="{{user.img}}" style="border-radius: 50%;"/>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+                <ion-col>
+                        <h4>{{user.firstName}} {{ user.lastName}}</h4>
+                        <hr>
+                </ion-col>
+            </ion-row>        
+        <ion-row>
+            <ion-col col-8>
+
+                <ion-row>
+                    <ion-col>
+
+                        <p>{{user.gender}}</p>
+                        <p><span>Start Date : </span> <span>{{user.startDate}}</span></p>
+                        <p><span>End Date : </span> <span>{{user.endDate}}</span></p>
+                        <p><span>Relationship : </span> <span>{{user.type}}</span></p>    
+                        <p><span>Status : </span> <span>{{user.status}}</span></p>
+                    </ion-col>
+                </ion-row>
+            </ion-col>
+            <ion-col>
+                <ion-icon name="{{iconname}}" color={{color}} style="padding-top:20px;"></ion-icon>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <hr>
+</ion-content>

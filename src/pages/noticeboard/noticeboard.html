@@ -1,0 +1,26 @@
+<ion-header >
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>Notice Board</ion-title>
+        </ion-navbar>
+</ion-header>
+<hr>
+<ion-content padding>
+    <apartmentname></apartmentname>
+    <ion-grid>
+        <ion-row *ngFor="let notice of notices" >
+            <ion-col style="font-weight: bold; background-color: #ffe6e6;" col-9>{{notice.title}}</ion-col>
+            <ion-col style="text-align: right; background-color: #ffe6e6;">{{notice.date}}</ion-col>
+            <ul>
+                <li *ngFor="let noticeitem of notice.notice">
+                    {{noticeitem}}
+                </li>
+            </ul>
+            
+        </ion-row>
+ 
+        
+    </ion-grid>
+</ion-content>

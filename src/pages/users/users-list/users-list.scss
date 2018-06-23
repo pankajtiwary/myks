@@ -1,0 +1,21 @@
+users-list {
+    .status {
+        height: 60px;
+        // padding: 10px;
+    }
+    ion-icon {
+        font-size: 50px; //Preferred size here
+
+    }    
+    .expired {
+        color: red;
+    }
+
+    .aboutToExpired {
+        color: orange;
+    }
+
+    .live {
+        color: green;
+    }
+}
