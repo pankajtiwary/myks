@@ -1,0 +1,46 @@
+<ion-header >
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>My Flat</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+  
+  <ion-content padding>
+
+    <apartmentname></apartmentname>
+  
+    <ion-list>
+      <ion-item>
+        <ion-label color="primary">Building ...</ion-label>
+        <ion-select [(ngModel)]="buildingId" interface="action-sheet">
+          <ion-option *ngFor="let building of getApartmentData()" value={{building.id}}>{{building.name}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary" >Floor ...</ion-label>
+          <ion-select [(ngModel)]="floor" #C (ionChange)="onChangeFloor(C.value)" interface="action-sheet">
+            <ion-option *ngFor="let floorPlan of floorPlans" value={{floorPlan.floorId}}>{{floorPlan.floorName}}</ion-option>
+          </ion-select>
+      </ion-item>
+      <ion-item>
+          <ion-label color="primary" >Flat ...</ion-label>
+          <ion-select [(ngModel)]="flat" interface="action-sheet">
+            <ion-option *ngFor="let flatNumber of flats" value="{{flatNumber}}">{{flatNumber}}</ion-option>
+          </ion-select>
+      </ion-item>
+  
+      <ion-item>
+          <ion-label color="primary" floating>PIN ...</ion-label>
+          <ion-input type="text" maxlength="6" [(ngModel)]="pin"></ion-input>
+      </ion-item>
+      <ion-item>
+          <button ion-button full round color="primary" (click)="onSubmit($event)">
+            <span style="padding-right: 10px;">Next </span><ion-icon name="arrow-round-forward"></ion-icon></button>
+      </ion-item>
+  
+    </ion-list>
+    
+  </ion-content>

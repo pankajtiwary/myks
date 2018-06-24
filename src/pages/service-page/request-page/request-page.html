@@ -1,0 +1,24 @@
+<ion-header >
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>Raise Request</ion-title>
+        </ion-navbar>
+</ion-header>
+      
+<ion-content padding>
+    <apartmentname></apartmentname>
+    <ion-list>
+            <ion-item>
+              <ion-label color="primary" floating>Request to {{service}}</ion-label>
+              <ion-textarea maxlength="100" rows="5"></ion-textarea>
+            </ion-item>
+    </ion-list>
+    <ion-item>
+        <ion-label color="primary" >Requester ...</ion-label>
+        <ion-select [(ngModel)]="userId" interface="action-sheet">
+          <ion-option *ngFor="let user of getUserList()" value={{user.userId}} color="primary">{{user.name}}</ion-option>
+        </ion-select>
+    </ion-item>    
+</ion-content>

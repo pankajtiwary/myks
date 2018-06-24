@@ -1,0 +1,26 @@
+<ion-header >
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>Services</ion-title>
+        </ion-navbar>
+</ion-header>
+      
+<ion-content padding>
+    <apartmentname></apartmentname>
+   <ion-grid>
+       <ion-row>
+          <ion-col><homepageblock heading="Swimming Pass" imgname="swimming.png" (click)="nextPage('swim')"></homepageblock></ion-col>
+          <ion-col><homepageblock heading="Electrician" imgname="electrician.png" (click)="nextPage('electrician')"></homepageblock></ion-col> 
+       </ion-row>
+       <ion-row>
+           <ion-col><homepageblock heading="Plumber" imgname="plumber.png" (click)="nextPage('plumber')"></homepageblock></ion-col> 
+           <ion-col><homepageblock heading="Carpenter" imgname="carpenter.png" (click)="nextPage('carpenter')"></homepageblock></ion-col>
+       </ion-row> 
+       <ion-row>
+          <ion-col><homepageblock heading="House Keeping" imgname="housekeeping.png" (click)="nextPage('housekeeping')"></homepageblock></ion-col> 
+          <ion-col><homepageblock heading="My All Request" imgname="myallrequest.png" (click)="nextPage('myallrequest')"></homepageblock></ion-col>
+      </ion-row>        
+</ion-grid> 
+</ion-content>

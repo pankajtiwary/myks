@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import {ApartmentDataService} from '../../common/apartdata.service';
-import {UsersListPage} from '../../pages/users/users-list/users-list';
+// import {UsersListPage} from '../../pages/users/users-list/users-list';
+import {ServicePage} from '../../pages/service-page/service-page';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 // import {LoadingControllerService} from '../../common/loadingcontrollerservice';
 @Component({
-  selector: 'login-page',
-  templateUrl: 'login-page.html'
+  selector: 'myflat-page',
+  templateUrl: 'myflat-page.html'
 })
-export class LogInPage {
+export class MyFlatPage {
 
  
   pin:string;
@@ -60,7 +61,7 @@ export class LogInPage {
      this.storage.set("buildingId", this.buildingId);
      this.storage.set("floor", this.floor);
      this.storage.set("pin", this.pin);
-     this.navCtrl.push(UsersListPage);
+     this.navCtrl.push(ServicePage);
     // this.nav.setRoot(UsersListPage);
   }
 

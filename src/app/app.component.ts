@@ -3,8 +3,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { LogInPage } from '../pages/login-page/login-page';
+import { MyFlatPage } from '../pages/myflat-page/myflat-page';
 import {NoticeBoardPage} from '../pages/noticeboard/noticeboard';
+import {SettingPage} from '../pages/setting-page/setting-page';
 // import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -39,8 +40,10 @@ export class MyApp {
       { title: 'My Society', component: HomePage, icon:"home" },
       { title: 'Rules & Timings', component: HelloIonicPage, icon:"time" },
       // { title: 'Swimming Pool Timings', component: ListPage, icon:"" },
-      { title: 'My Subscription', component: LogInPage, icon:"paper"},
-      { title: 'Notice Board', component: NoticeBoardPage, icon:"notifications" }
+      { title: 'My Flat', component: MyFlatPage, icon:"paper"},
+      { title: 'Notice Board', component: NoticeBoardPage, icon:"notifications" },
+      { title: 'Settings', component: SettingPage, icon:"settings" }
+      
     ];
   }
 

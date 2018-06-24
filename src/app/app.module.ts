@@ -4,16 +4,20 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
-import { LogInPage } from '../pages/login-page/login-page';
+import { MyFlatPage } from '../pages/myflat-page/myflat-page';
 import { UsersListPage } from '../pages/users/users-list/users-list';
 import { UserDetailsPage } from '../pages/users/user-details/user-details';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import {NoticeBoardPage} from '../pages/noticeboard/noticeboard';
-
+import {SettingPage} from '../pages/setting-page/setting-page';
+import {ServicePage} from '../pages/service-page/service-page';
+import {HelperPage} from '../pages/service-page/helper-page/helper-page';
+import {RequestPage} from '../pages/service-page/request-page/request-page';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {ApartmentDataService} from '../common/apartdata.service';
+import {MyFamilyService} from '../common/myfamily.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ApartmentName } from '../common/apartmentname/apartmentname';
 import {LoadingControllerService} from '../common/loadingcontrollerservice';
@@ -26,13 +30,17 @@ import { HomePage } from '../pages/home/homepage';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LogInPage,
+    MyFlatPage,
     UsersListPage,
     UserDetailsPage,
     NoticeBoardPage,
     ApartmentName,
     HomePageBlock,
-    HomePage
+    HomePage,
+    SettingPage,
+    ServicePage,
+    HelperPage,
+    RequestPage
   ],
   imports: [
     BrowserModule,
@@ -45,18 +53,23 @@ import { HomePage } from '../pages/home/homepage';
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
-    LogInPage,
+    MyFlatPage,
     UsersListPage,
     UserDetailsPage,
     NoticeBoardPage,
-    HomePage
+    HomePage,
+    SettingPage,
+    ServicePage,
+    HelperPage,
+    RequestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApartmentDataService,
-    LoadingControllerService
+    LoadingControllerService,
+    MyFamilyService
   ]
 })
 export class AppModule {}
