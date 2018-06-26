@@ -1,0 +1,20 @@
+<ion-header >
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>Raise Request</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding style="text-align: center;">
+  <ion-icon name="checkmark-circle" style="color: green; font-size: 200px; text-align: center;"></ion-icon>
+  <hr>
+  <h5>Your Request is raised successfully</h5>
+  <h5>It will be adressed soon</h5>
+  <hr>
+  <br>
+  <button ion-button full round color="primary" (click)="anotherRequest()">Raise Another Request</button>
+  <br>
+  <button ion-button full round color="primary" (click)="myRequestList()">My Request List</button>
+
+</ion-content>

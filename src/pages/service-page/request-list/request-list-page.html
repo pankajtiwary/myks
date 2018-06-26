@@ -1,0 +1,19 @@
+<ion-header >
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title>My Request List</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content  padding>
+  <apartmentname></apartmentname>
+  
+  <ion-list>
+      <button ion-item *ngFor= "let request of myrequestlist" 
+      (click)="goToRequestDetailPage(request)">
+          <request-list-comp [request]="request"></request-list-comp>
+      </button>
+    </ion-list>
+
+</ion-content>

@@ -12,8 +12,11 @@ import { ListPage } from '../pages/list/list';
 import {NoticeBoardPage} from '../pages/noticeboard/noticeboard';
 import {SettingPage} from '../pages/setting-page/setting-page';
 import {ServicePage} from '../pages/service-page/service-page';
+import {RequestListPage} from '../pages/service-page/request-list/request-list-page';
+import {RequestDetailPage} from '../pages/service-page/request-list/request-detail-page/request-detail-page';
 import {HelperPage} from '../pages/service-page/helper-page/helper-page';
 import {RequestPage} from '../pages/service-page/request-page/request-page';
+import {RequestSubmittedPage} from '../pages/service-page/request-page/request-submitted-page/request-submitted-page';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {ApartmentDataService} from '../common/apartdata.service';
@@ -21,6 +24,7 @@ import {MyFamilyService} from '../common/myfamily.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ApartmentName } from '../common/apartmentname/apartmentname';
 import {LoadingControllerService} from '../common/loadingcontrollerservice';
+import {RequestListComp} from '../common/request-list-comp/request-list-comp';
 import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
 
@@ -40,7 +44,11 @@ import { HomePage } from '../pages/home/homepage';
     SettingPage,
     ServicePage,
     HelperPage,
-    RequestPage
+    RequestPage,
+    RequestSubmittedPage,
+    RequestListPage,
+    RequestListComp,
+    RequestDetailPage
   ],
   imports: [
     BrowserModule,
@@ -61,7 +69,10 @@ import { HomePage } from '../pages/home/homepage';
     SettingPage,
     ServicePage,
     HelperPage,
-    RequestPage
+    RequestPage,
+    RequestSubmittedPage,
+    RequestListPage,
+    RequestDetailPage
   ],
   providers: [
     StatusBar,

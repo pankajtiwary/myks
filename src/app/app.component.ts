@@ -12,6 +12,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { timer } from 'rxjs/observable/timer';
 import { HomePage } from '../pages/home/homepage';
+import {RequestListPage} from '../pages/service-page/request-list/request-list-page';
 
 
 @Component({
@@ -24,6 +25,7 @@ export class MyApp {
   // rootPage = HelloIonicPage;
   // rootPage = HelloIonicPage;
   rootPage = HomePage;
+  // rootPage = RequestListPage;
   pages: Array<{title: string, component: any, icon:string}>;
   showSplash = true; 
 

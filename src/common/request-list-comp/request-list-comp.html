@@ -1,0 +1,19 @@
+<div>
+    <div style="width: 10%; float: left;">
+        <img src="assets/imgs/{{request.requestType}}.png" style="height: 40px; width: 40px; margin: auto;">
+    </div>
+
+    <div style="width: 50%; float: left;">
+            <p><span style="font-weight: bold; text-align: left; padding: 5px;">
+                {{request.subject | slice:0:25}}
+            </span></p>
+            <p><span style="text-align: left; padding: 5px; color:gray;">
+                {{request.description |  slice:0:25}}...
+            </span></p>
+            <p><span style="text-align: right; color:gray;padding: 5px;">{{request.creationDate}}</span></p>
+    </div>
+    <div style="width: 10%; float: right; text-align: right;">
+             
+            <img src="assets/imgs/{{request.status}}.png" style="height: 40px; width: 40px;">
+    </div>
+</div>

@@ -10,15 +10,32 @@
 <ion-content padding>
     <apartmentname></apartmentname>
     <ion-list>
+      <ion-item>
+        <div style="text-align: center;">
+            <img src="assets/imgs/{{image}}.png" style="height: 100px; float: left;">
+            <img src="assets/imgs/help.png" style="height: 100px; border-radius: 10px;">
+        </div>
+          <!-- <p style="height: 100px; float: right; font-size: 50px;"> May I Help You?</p> -->
+      </ion-item>
+            
             <ion-item>
-              <ion-label color="primary" floating>Request to {{service}}</ion-label>
-              <ion-textarea maxlength="100" rows="5"></ion-textarea>
+              <ion-label color="primary" floating>Subject</ion-label>
+              <ion-input maxlength="50" [(ngModel)]="subject"></ion-input>
+            </ion-item>      
+            <ion-item>
+              <ion-label color="primary" floating>Detail Description</ion-label>
+              <ion-textarea maxlength="200" rows="3" [(ngModel)]="description"></ion-textarea>
             </ion-item>
+            <ion-item>
+                <ion-label color="primary" >Requester ...</ion-label>
+                <ion-select [(ngModel)]="userId" interface="action-sheet">
+                  <ion-option *ngFor="let user of getUserList()" value={{user.userId}} color="primary">{{user.name}}</ion-option>
+                </ion-select>
+            </ion-item>  
+            <ion-item>
+                <button ion-button full round color="primary" (click)="onSubmit()">
+                  <span style="padding-right: 10px;">Submit </span><ion-icon name="arrow-round-forward"></ion-icon></button>
+            </ion-item>                         
     </ion-list>
-    <ion-item>
-        <ion-label color="primary" >Requester ...</ion-label>
-        <ion-select [(ngModel)]="userId" interface="action-sheet">
-          <ion-option *ngFor="let user of getUserList()" value={{user.userId}} color="primary">{{user.name}}</ion-option>
-        </ion-select>
-    </ion-item>    
+ 
 </ion-content>
