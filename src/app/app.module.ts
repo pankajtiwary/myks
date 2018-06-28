@@ -27,6 +27,7 @@ import {LoadingControllerService} from '../common/loadingcontrollerservice';
 import {RequestListComp} from '../common/request-list-comp/request-list-comp';
 import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
+import {RatingComponent} from '../common/rating-comp/rating-comp';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { HomePage } from '../pages/home/homepage';
     RequestSubmittedPage,
     RequestListPage,
     RequestListComp,
-    RequestDetailPage
+    RequestDetailPage,
+    RatingComponent
   ],
   imports: [
     BrowserModule,

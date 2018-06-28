@@ -48,11 +48,18 @@
               <ion-col col-4>Resolved Date</ion-col>
               <ion-col col-7>{{request.resolvedDate}}</ion-col>
           </ion-row>  
-          <ion-row *ngIf="request.status==='done'">
-              <ion-col col-1><ion-icon name="clipboard" color='primary'></ion-icon></ion-col>
-              <ion-col col-4>Closing Remark</ion-col>
-              <ion-col col-7>{{request.closingRemark}}</ion-col>
-          </ion-row>                                                         
+ 
+          <ion-row>
+            <ion-col>
+                    <rating-comp [readonly]="rateReadOnly" [rating]="request.rating" 
+                    [closingRemark]="request.closingRemark" (ratingChanged)="ratingChanged($event)"
+                    (closingRemarkChanged)="closingRemarkChanged($event)"></rating-comp>
+            </ion-col>
+          </ion-row>   
+          <ion-row *ngIf="request.status==='open'">
+                <button ion-button full round color="primary" (click)="onResolved()" style="height: 2.5rem;">
+                  <span style="padding-right: 10px;">Resolved </span></button>
+          </ion-row>                                                                           
         </ion-grid>
         
     </ion-content>

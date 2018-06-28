@@ -1,0 +1,9 @@
+<div>
+    <p style="text-align: left ;">Rate My Service</p>
+    <span *ngFor='let star of starscount' (click)="onRate(star)">
+        <img src='assets/imgs/{{star.starimg}}.png' style="height: 50px; width: 50px;">
+    </span>
+    <ion-label>{{closingRemarkLabel}}</ion-label>
+    <ion-textarea  maxlength="200" rows="3" [(ngModel)]="closingRemark" [disabled]='internalreadonly'
+    (input)="closingRemarkChange()" style="border:1px solid #F8F8F8;"></ion-textarea>
+</div>
