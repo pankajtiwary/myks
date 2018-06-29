@@ -1,0 +1,27 @@
+<ion-header >
+    <ion-navbar>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Admin Signin</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div style="border:1px solid red; border-radius: 10px; padding-top: 20px;padding-bottom: 20px;">
+        <form [formGroup]="signInForm" (ngSubmit)="signin()">
+            <ion-item>
+                <ion-label>Admin Id</ion-label>
+                <ion-input type="text" maxlength="10" formControlName="userId" ></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label >Password</ion-label>
+                <ion-input type={{pwdfieldtype}} maxlength="10" formControlName="password"> </ion-input>
+                <ion-icon item-end name={{pwdiconname}} class="signinicon" 
+                (click)="togglePassword()" class="signinicon"></ion-icon>
+            </ion-item>
+            <div style="text-align: center; margin-top: 20px;">
+                    <button ion-button type="submit" [disabled]="!signInForm.valid">Login</button>
+            </div>
+        </form>
+    </div>
+</ion-content>

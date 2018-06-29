@@ -36,10 +36,18 @@
           <ion-label color="primary" floating>PIN ...</ion-label>
           <ion-input type="text" maxlength="6" [(ngModel)]="pin"></ion-input>
       </ion-item>
-      <ion-item>
+      <ion-item ion-item *ngIf="admin==undefined || admin===false">
           <button ion-button full round color="primary" (click)="onSubmit($event)">
             <span style="padding-right: 10px;">Next </span><ion-icon name="arrow-round-forward"></ion-icon></button>
       </ion-item>
+      <ion-item ion-item *ngIf="admin===true">
+          <button ion-button full round color="primary" (click)="updateMember()">
+            <span style="padding-right: 10px;">Update Member </span><ion-icon name="arrow-round-forward"></ion-icon></button>
+      </ion-item> 
+      <ion-item ion-item *ngIf="admin===true">
+          <button ion-button full round color="primary" (click)="changePIN()">
+            <span style="padding-right: 10px;">Change PIN</span><ion-icon name="arrow-round-forward"></ion-icon></button>
+      </ion-item>                 
   
     </ion-list>
     

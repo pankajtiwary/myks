@@ -12,7 +12,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { timer } from 'rxjs/observable/timer';
 import { HomePage } from '../pages/home/homepage';
-import {RequestListPage} from '../pages/service-page/request-list/request-list-page';
+// import {RequestListPage} from '../pages/service-page/request-list/request-list-page';
+import { SigninPage } from '../pages/admin/auth/signin/signin-page';
+import { AdminWorklistPage } from '../pages/admin/admin-worklist/admin-worklist-page';
 
 
 @Component({
@@ -25,7 +27,7 @@ export class MyApp {
   // rootPage = HelloIonicPage;
   // rootPage = HelloIonicPage;
   rootPage = HomePage;
-  // rootPage = RequestListPage;
+  // rootPage = AdminWorklistPage;
   pages: Array<{title: string, component: any, icon:string}>;
   showSplash = true; 
 
@@ -44,7 +46,8 @@ export class MyApp {
       // { title: 'Swimming Pool Timings', component: ListPage, icon:"" },
       { title: 'My Flat', component: MyFlatPage, icon:"paper"},
       { title: 'Notice Board', component: NoticeBoardPage, icon:"notifications" },
-      { title: 'Settings', component: SettingPage, icon:"settings" }
+      { title: 'Settings', component: SettingPage, icon:"settings" },
+      { title: 'Admin Sign in', component: SigninPage, icon:"contact"}
       
     ];
   }

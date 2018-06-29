@@ -28,6 +28,8 @@ import {RequestListComp} from '../common/request-list-comp/request-list-comp';
 import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
 import {RatingComponent} from '../common/rating-comp/rating-comp';
+import {SigninPage} from '../pages/admin/auth/signin/signin-page';
+import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-page';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import {RatingComponent} from '../common/rating-comp/rating-comp';
     RequestListPage,
     RequestListComp,
     RequestDetailPage,
-    RatingComponent
+    RatingComponent,
+    SigninPage,
+    AdminWorklistPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +78,9 @@ import {RatingComponent} from '../common/rating-comp/rating-comp';
     RequestPage,
     RequestSubmittedPage,
     RequestListPage,
-    RequestDetailPage
+    RequestDetailPage,
+    SigninPage,
+    AdminWorklistPage
   ],
   providers: [
     StatusBar,

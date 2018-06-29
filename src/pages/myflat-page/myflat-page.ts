@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import {ApartmentDataService} from '../../common/apartdata.service';
-// import {UsersListPage} from '../../pages/users/users-list/users-list';
+import {UsersListPage} from '../../pages/users/users-list/users-list';
 import {ServicePage} from '../../pages/service-page/service-page';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
@@ -20,8 +20,12 @@ export class MyFlatPage {
   flats:any[];
   flat:number;
   floor:number;
-  constructor(private apartmentDataService:ApartmentDataService,public navCtrl: NavController, 
+  admin:boolean = false;
+  constructor(private apartmentDataService:ApartmentDataService,private navCtrl: NavController, 
     public navParams: NavParams, private alertCtrl: AlertController, private storage: Storage) {
+
+    this.admin = this.navParams.get('admin');
+
     this.floorPlans = apartmentDataService.getFloorPlan();
     storage.get('pin').then((val) => {
       this.pin = val;
@@ -108,5 +112,12 @@ export class MyFlatPage {
       alert.present();
       return false;
     }
+  }
+
+  changePIN() {
+
+  }
+  updateMember() {
+    this.navCtrl.push(UsersListPage, {admin:true});
   }
 }

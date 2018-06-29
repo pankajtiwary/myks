@@ -9,9 +9,11 @@ import {MyFamilyService} from '../../../common/myfamily.service';
   })
 export class UsersListPage {
 
-  private users:any[];
+  users:any[];
+  admin:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams,
      private loadingCrt:LoadingControllerService, private myFamily: MyFamilyService) {
+    this.admin = this.navParams.get('admin');
     this.users = myFamily.getMyFamilyData();
     this.loadingCrt.hide();
   }
@@ -37,6 +39,10 @@ export class UsersListPage {
     } else {
       return "secondary";
     }
+
+  }
+
+  addNewMember() {
 
   }
 

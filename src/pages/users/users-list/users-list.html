@@ -37,4 +37,10 @@
         </ion-row>
       </button>
     </ion-grid>
+    <ion-item ion-item *ngIf="admin===true">
+        <button ion-button full round color="primary" (click)="addNewMember()">
+          <span style="padding-right: 10px;">Add New Member </span>
+          <ion-icon name="arrow-round-forward" style="font-size: 20px;"></ion-icon>
+        </button>
+    </ion-item>    
   </ion-content>
