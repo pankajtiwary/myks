@@ -1,0 +1,101 @@
+<ion-header color="primary" >
+    <ion-navbar>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+      <ion-title style="float: left;margin-top:3px">Add Member</ion-title>
+      <span style="float: right; color: white;margin-top:3px;margin-right:50px; font-size: 20px;"><ion-icon name="cloud-upload"></ion-icon></span>
+    </ion-navbar>
+  </ion-header>
+  <ion-content padding>
+    <apartmentname></apartmentname>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+            <ion-row style="height: 110px;">
+                <ion-col style="text-align: center; background-color: #F5F5F5;">
+                    <div>
+                        <div>
+                            <img src="assets/imgs/man.png" style="border-radius: 50%; height: 100px;"/>
+                        </div>
+  
+                        <div style="position: relative; top:-40px; left: 50px;">
+                            <ion-icon name="camera" color="primary" style="font-size: 30px" (click)="getImage()"></ion-icon>
+                        </div>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+      <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+              <ion-label floating>First Name</ion-label>
+              <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
+                <ion-label floating>Last Name</ion-label>
+                <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+            </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row ion-list>
+          <ion-col>
+            <ion-item>
+                <ion-label floating>Mobile Number</ion-label>
+                <ion-input type="text"></ion-input>
+            </ion-item>
+          </ion-col>
+          <!-- <ion-col>
+              <ion-item no-lines>
+                  <ion-label floating>Last Name</ion-label>
+                  <ion-input type="text"></ion-input>
+              </ion-item>
+          </ion-col> -->
+          <ion-col>
+              <ion-item>
+                  <ion-label floating >Type</ion-label>
+                  <ion-select [(ngModel)]="selectedMemberTypeId" interface="action-sheet">
+                    <ion-option *ngFor="let type of memberTypes" value="{{type.typeId}}">
+                      {{type.type}}
+                    </ion-option>
+                  </ion-select>
+              </ion-item>          
+          </ion-col>
+        </ion-row>      
+        <ion-row ion-list radio-group [(ngModel)]="gender" >
+          <ion-col>
+                <ion-item no-lines>
+                  <ion-label color="light-gray">Male</ion-label>
+                  <ion-radio value="male" checked></ion-radio>
+                </ion-item>
+              </ion-col>
+          <ion-col>
+            <ion-item  no-lines>
+                <ion-label color="light-gray">Female</ion-label>
+                <ion-radio value="female"></ion-radio>
+            </ion-item>
+          </ion-col>
+          
+        </ion-row>
+        
+      <!-- <ion-row>
+        <ion-col>
+                <p>{{imageURI}}</p>
+                <button ion-button color="secondary" (click)="getImage()">Get Image</button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+                  <button ion-button (click)="uploadFile()">Upload</button>
+          </ion-col>
+        </ion-row> -->
+  
+    </ion-grid>
+
+
+  </ion-content>

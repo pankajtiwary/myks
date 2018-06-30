@@ -34,7 +34,9 @@
   
       <ion-item>
           <ion-label color="primary" floating>PIN ...</ion-label>
-          <ion-input type="text" maxlength="6" [(ngModel)]="pin"></ion-input>
+          <ion-input type="{{pwdfieldtype}}" maxlength="6" [(ngModel)]="pin"></ion-input>
+          <ion-icon item-end name={{pwdiconname}} class="signinicon" 
+          (click)="togglePassword()" class="signinicon"></ion-icon>
       </ion-item>
       <ion-item ion-item *ngIf="admin==undefined || admin===false">
           <button ion-button full round color="primary" (click)="onSubmit($event)">

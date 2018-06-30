@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import {UserDetailsPage} from '../user-details/user-details'
-import {LoadingControllerService} from '../../../common/loadingcontrollerservice';
-import {MyFamilyService} from '../../../common/myfamily.service';
+import { UserDetailsPage } from '../user-details/user-details'
+import { LoadingControllerService } from '../../../common/loadingcontrollerservice';
+import { MyFamilyService } from '../../../common/myfamily.service';
+import { CreateUserPage } from '../create-user/create-user-page';
 @Component({
     selector: 'users-list',
     templateUrl: 'users-list.html'
@@ -43,7 +44,7 @@ export class UsersListPage {
   }
 
   addNewMember() {
-
+    this.navCtrl.push(CreateUserPage);
   }
 
 }

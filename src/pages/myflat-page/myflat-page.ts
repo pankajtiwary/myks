@@ -5,6 +5,7 @@ import {UsersListPage} from '../../pages/users/users-list/users-list';
 import {ServicePage} from '../../pages/service-page/service-page';
 import { AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
+import { POINTER_EVENT_TYPE_MOUSE } from 'ionic-angular/umd/gestures/pointer-events';
 // import {LoadingControllerService} from '../../common/loadingcontrollerservice';
 @Component({
   selector: 'myflat-page',
@@ -21,6 +22,8 @@ export class MyFlatPage {
   flat:number;
   floor:number;
   admin:boolean = false;
+  pwdiconname:string = 'md-eye-off';
+  pwdfieldtype:string='password';
   constructor(private apartmentDataService:ApartmentDataService,private navCtrl: NavController, 
     public navParams: NavParams, private alertCtrl: AlertController, private storage: Storage) {
 
@@ -119,5 +122,16 @@ export class MyFlatPage {
   }
   updateMember() {
     this.navCtrl.push(UsersListPage, {admin:true});
+  }
+
+  togglePassword() {
+    console.log("I am inside the togglePassword")
+    if (this.pwdfieldtype === 'password') {
+      this.pwdfieldtype = 'input';
+      this.pwdiconname ='md-eye';
+    } else {
+      this.pwdfieldtype = 'password';
+      this.pwdiconname ='md-eye-off';
+    }
   }
 }

@@ -1,12 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer';
+import { File } from '@ionic-native/file';
+import { Camera } from '@ionic-native/camera';
+
 import { MyApp } from './app.component';
 
 import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { MyFlatPage } from '../pages/myflat-page/myflat-page';
 import { UsersListPage } from '../pages/users/users-list/users-list';
 import { UserDetailsPage } from '../pages/users/user-details/user-details';
+import { CreateUserPage } from '../pages/users/create-user/create-user-page';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import {NoticeBoardPage} from '../pages/noticeboard/noticeboard';
@@ -54,7 +59,8 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     RequestDetailPage,
     RatingComponent,
     SigninPage,
-    AdminWorklistPage
+    AdminWorklistPage,
+    CreateUserPage
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,8 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     RequestListPage,
     RequestDetailPage,
     SigninPage,
-    AdminWorklistPage
+    AdminWorklistPage,
+    CreateUserPage
   ],
   providers: [
     StatusBar,
@@ -88,7 +95,12 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApartmentDataService,
     LoadingControllerService,
-    MyFamilyService
+    MyFamilyService,
+    FileTransfer,
+    // FileUploadOptions,
+    FileTransferObject,
+    File,
+    Camera
   ]
 })
 export class AppModule {}
