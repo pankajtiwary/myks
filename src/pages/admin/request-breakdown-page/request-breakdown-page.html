@@ -1,0 +1,33 @@
+<ion-header >
+        <ion-navbar>
+            <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+            </button>
+            <ion-title>Request Breakdown</ion-title>
+        </ion-navbar>
+    </ion-header>
+    <ion-content padding>
+        <apartmentname></apartmentname>
+        <p style="text-align: center"><img src='assets/imgs/{{service.icon}}.png' style="height: 40px; width: 40px;"/></p>
+        <p style="text-align: center; font-weight: bold">Pending Request for {{service.title}}</p>
+        <ion-grid>
+                <ion-row  *ngFor="let workitem of worklists" (click)="itemTapped( workitem)">
+                            <div style="height: 1px;width:100%;background-color: gray; 
+                            margin-top: 30px; margin-bottom: 30px;" *ngIf="workitem.bldgId==20"></div>
+                            <ion-col col-2>
+                                <img src='assets/imgs/{{workitem.icon}}.png' style="height: 40px; width: 40px; float: left;"/>
+                            </ion-col>
+                            <ion-col col-8>
+                                <span style="padding-top:10px; display: inline-block;height: 40px; padding-left: 10px;">
+                                    {{workitem.bldgName}}
+                                </span>
+                            </ion-col>
+                           
+                            <ion-col col-2>
+                                <span style="display: inline-block; height: 30px; width:50px; border-radius: 10px;
+                                background-color: red; text-align: center; color:white;
+                                padding-top:8px;font-weight: bold;">{{workitem.pendingRequest}}</span>
+                            </ion-col>
+                </ion-row>
+            </ion-grid>  
+    </ion-content>

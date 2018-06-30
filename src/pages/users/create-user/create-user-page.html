@@ -4,7 +4,9 @@
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title style="float: left;margin-top:3px">Add Member</ion-title>
-      <span style="float: right; color: white;margin-top:3px;margin-right:50px; font-size: 20px;"><ion-icon name="cloud-upload"></ion-icon></span>
+      <span style="float: right; color: white;margin-top:3px;margin-right:50px; font-size: 20px;">
+          <ion-icon name="cloud-upload" (click)="saveUser()"></ion-icon>
+      </span>
     </ion-navbar>
   </ion-header>
   <ion-content padding>

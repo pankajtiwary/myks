@@ -33,8 +33,10 @@ import {RequestListComp} from '../common/request-list-comp/request-list-comp';
 import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
 import {RatingComponent} from '../common/rating-comp/rating-comp';
+import {ServiceType} from '../common/service-type-service';
 import {SigninPage} from '../pages/admin/auth/signin/signin-page';
 import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-page';
+import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/request-breakdown-page';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,8 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     RatingComponent,
     SigninPage,
     AdminWorklistPage,
-    CreateUserPage
+    CreateUserPage,
+    RequestBreakdownPage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +90,8 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     RequestDetailPage,
     SigninPage,
     AdminWorklistPage,
-    CreateUserPage
+    CreateUserPage,
+    RequestBreakdownPage
   ],
   providers: [
     StatusBar,
@@ -100,7 +104,8 @@ import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-pa
     // FileUploadOptions,
     FileTransferObject,
     File,
-    Camera
+    Camera,
+    ServiceType
   ]
 })
 export class AppModule {}

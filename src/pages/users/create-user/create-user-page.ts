@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController} from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 
@@ -11,17 +11,16 @@ export class CreateUserPage {
 
     imageURI:string;
     imageFileName:string;
-    gender:string;
+    gender:string='male';
     memberTypes:{typeId:number, type:string}[] = [];
-    selectedMemberTypeId:number;
+    selectedMemberTypeId:number=1;
     firstName:string;
     lastName:string;
 
     constructor(public navCtrl: NavController,
-        private transfer: FileTransfer,
-        private camera: Camera,
+        private transfer: FileTransfer,private camera: Camera,
         public loadingCtrl: LoadingController,
-        public toastCtrl: ToastController) {
+        public toastCtrl: ToastController,private alertCtrl: AlertController) {
           this.memberTypes = [{typeId:1, type:'Owner'},
           {typeId:2, type:'Tanent'},
           {typeId:3, type:'Relative'}
@@ -82,4 +81,22 @@ export class CreateUserPage {
       
         toast.present();
       }      
+
+      showAlert() {
+        const alert = this.alertCtrl.create({
+          title: 'Misssing Field',
+          subTitle: 'First Name & Last Name are mandatory!',
+          buttons: ['OK']
+
+        });
+        alert.present();
+      }
+
+      saveUser() {
+        if(this.firstName == undefined || this.lastName == undefined) {
+           this.showAlert();
+           return;
+        }
+      }
+       
 }
