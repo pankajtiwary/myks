@@ -27,23 +27,23 @@ export class MyFlatPage {
   constructor(private apartmentDataService:ApartmentDataService,private navCtrl: NavController, 
     public navParams: NavParams, private alertCtrl: AlertController, private storage: Storage) {
 
-    this.admin = this.navParams.get('admin');
+        this.admin = this.navParams.get('admin');
 
-    this.floorPlans = apartmentDataService.getFloorPlan();
-    storage.get('pin').then((val) => {
-      this.pin = val;
-    });
-    storage.get('floor').then((val) => {
-      this.floor = val;
-      this.onChangeFloor(this.floor);
-    });
-    storage.get('flat').then((val) => {
-      this.flat = val;
-    });    
+        this.floorPlans = apartmentDataService.getFloorPlan();
+        storage.get('pin').then((val) => {
+          this.pin = val;
+        });
+        storage.get('floor').then((val) => {
+          this.floor = val;
+          this.onChangeFloor(this.floor);
+        });
+        storage.get('flat').then((val) => {
+          this.flat = val;
+        });    
 
-    storage.get('buildingId').then((val) => {
-      this.buildingId = val;
-    });            
+        storage.get('buildingId').then((val) => {
+          this.buildingId = val;
+        });            
   }
 
   getApartmentData() {
@@ -63,13 +63,9 @@ export class MyFlatPage {
       //  console.log("I am going here");
         return;
      }
-    //  this.loadingCtr.show();
-     this.storage.set("flat", this.flat);
-     this.storage.set("buildingId", this.buildingId);
-     this.storage.set("floor", this.floor);
-     this.storage.set("pin", this.pin);
+
+     this.saveDetailsInStorage();
      this.navCtrl.push(ServicePage);
-    // this.nav.setRoot(UsersListPage);
   }
 
   validate() {
@@ -121,6 +117,7 @@ export class MyFlatPage {
 
   }
   updateMember() {
+    this.saveDetailsInStorage();
     this.navCtrl.push(UsersListPage, {admin:true});
   }
 
@@ -133,5 +130,12 @@ export class MyFlatPage {
       this.pwdfieldtype = 'password';
       this.pwdiconname ='md-eye-off';
     }
+  }
+
+  saveDetailsInStorage() {
+    this.storage.set("flat", this.flat);
+    this.storage.set("buildingId", this.buildingId);
+    this.storage.set("floor", this.floor);
+    this.storage.set("pin", this.pin);
   }
 }

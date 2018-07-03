@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import {RequestDetailPage} from './request-detail-page/request-detail-page';
+import { ModalController } from 'ionic-angular';
+import {RequestFilterPage} from '../request-filter-page/request-filter-page';
 
 @Component({
     selector: 'request-list-page',
@@ -10,7 +12,8 @@ export class RequestListPage {
 
     myrequestlist:any[]
 
-    constructor(private navCtrl: NavController, private navParams: NavParams) {
+    constructor(private navCtrl: NavController, private navParams: NavParams,
+    private modelCtrl: ModalController) {
         this.myrequestlist = [
             {requestId:1, raisedByUserId:1, requestType:'electrician', subject:'Tubelight not working', 
             description: 'Tubelight of my apartment is not working, pls check', status: 'open', 
@@ -30,6 +33,9 @@ export class RequestListPage {
 
     goToRequestDetailPage(request:any) {
         this.navCtrl.push(RequestDetailPage, {request:request});
+    }
+    filterRequest() {
+        
     }
 
 }

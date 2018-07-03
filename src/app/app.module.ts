@@ -22,6 +22,7 @@ import {RequestDetailPage} from '../pages/service-page/request-list/request-deta
 import {HelperPage} from '../pages/service-page/helper-page/helper-page';
 import {RequestPage} from '../pages/service-page/request-page/request-page';
 import {RequestSubmittedPage} from '../pages/service-page/request-page/request-submitted-page/request-submitted-page';
+import { RequestFilterPage } from '../pages/service-page/request-filter-page/request-filter-page';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {ApartmentDataService} from '../common/apartdata.service';
@@ -34,6 +35,8 @@ import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
 import {RatingComponent} from '../common/rating-comp/rating-comp';
 import {ServiceType} from '../common/service-type-service';
+import { MemeberTypeService } from '../common/member-type-service';
+import { UserService } from '../common/user-service';
 import {SigninPage} from '../pages/admin/auth/signin/signin-page';
 import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-page';
 import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/request-breakdown-page';
@@ -63,7 +66,8 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     SigninPage,
     AdminWorklistPage,
     CreateUserPage,
-    RequestBreakdownPage
+    RequestBreakdownPage,
+    RequestFilterPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +95,8 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     SigninPage,
     AdminWorklistPage,
     CreateUserPage,
-    RequestBreakdownPage
+    RequestBreakdownPage,
+    RequestFilterPage
   ],
   providers: [
     StatusBar,
@@ -105,7 +110,9 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     FileTransferObject,
     File,
     Camera,
-    ServiceType
+    ServiceType,
+    MemeberTypeService,
+    UserService
   ]
 })
 export class AppModule {}

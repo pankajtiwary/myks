@@ -4,6 +4,8 @@ import { UserDetailsPage } from '../user-details/user-details'
 import { LoadingControllerService } from '../../../common/loadingcontrollerservice';
 import { MyFamilyService } from '../../../common/myfamily.service';
 import { CreateUserPage } from '../create-user/create-user-page';
+import { MODE} from '../../../common/models/enum';
+
 @Component({
     selector: 'users-list',
     templateUrl: 'users-list.html'
@@ -44,7 +46,7 @@ export class UsersListPage {
   }
 
   addNewMember() {
-    this.navCtrl.push(CreateUserPage);
+    this.navCtrl.push(CreateUserPage, {'mode' : MODE.CREATE});
   }
 
 }

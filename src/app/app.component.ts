@@ -16,6 +16,16 @@ import { HomePage } from '../pages/home/homepage';
 import { SigninPage } from '../pages/admin/auth/signin/signin-page';
 import { AdminWorklistPage } from '../pages/admin/admin-worklist/admin-worklist-page';
 import { CreateUserPage } from '../pages/users/create-user/create-user-page';
+import * as firebase from 'firebase';
+
+let config = {
+    apiKey: "AIzaSyBJ3mJiVoScmR_ZqZs6IUTF7O1Wv5X8p34",
+    authDomain: "myks-48c09.firebaseapp.com",
+    databaseURL: "https://myks-48c09.firebaseio.com",
+    projectId: "myks-48c09",
+    storageBucket: "myks-48c09.appspot.com",
+    messagingSenderId: "362616594445"
+  };
 
 
 @Component({
@@ -51,6 +61,7 @@ export class MyApp {
       { title: 'Admin Sign in', component: SigninPage, icon:"contact"}
       
     ];
+    
   }
 
   initializeApp() {
@@ -59,7 +70,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      timer(3000).subscribe(() => this.showSplash = false)
+      timer(3000).subscribe(() => this.showSplash = false);
+      firebase.initializeApp(config);
     });
   }
 

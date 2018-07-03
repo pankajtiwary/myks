@@ -18,7 +18,7 @@
                 <ion-col style="text-align: center; background-color: #F5F5F5;">
                     <div>
                         <div>
-                            <img src="assets/imgs/man.png" style="border-radius: 50%; height: 100px;"/>
+                            <img [src]="user.downloadbleUrl" style="border-radius: 50%; height: 100px;"/>
                         </div>
   
                         <div style="position: relative; top:-40px; left: 50px;">
@@ -35,13 +35,13 @@
         <ion-col>
           <ion-item>
               <ion-label floating>First Name</ion-label>
-              <ion-input type="text" [(ngModel)]="firstName"></ion-input>
+              <ion-input type="text" [(ngModel)]="user.firstName"></ion-input>
           </ion-item>
         </ion-col>
         <ion-col>
             <ion-item>
                 <ion-label floating>Last Name</ion-label>
-                <ion-input type="text" [(ngModel)]="lastName"></ion-input>
+                <ion-input type="text" [(ngModel)]="user.lastName"></ion-input>
             </ion-item>
         </ion-col>
       </ion-row>
@@ -49,7 +49,7 @@
           <ion-col>
             <ion-item>
                 <ion-label floating>Mobile Number</ion-label>
-                <ion-input type="text"></ion-input>
+                <ion-input type="text" [(ngModel)]="user.mobileNumber"></ion-input>
             </ion-item>
           </ion-col>
           <!-- <ion-col>
@@ -61,7 +61,7 @@
           <ion-col>
               <ion-item>
                   <ion-label floating >Type</ion-label>
-                  <ion-select [(ngModel)]="selectedMemberTypeId" interface="action-sheet">
+                  <ion-select [(ngModel)]="user.memberTypeId" interface="action-sheet">
                     <ion-option *ngFor="let type of memberTypes" value="{{type.typeId}}">
                       {{type.type}}
                     </ion-option>
@@ -69,7 +69,7 @@
               </ion-item>          
           </ion-col>
         </ion-row>      
-        <ion-row ion-list radio-group [(ngModel)]="gender" >
+        <ion-row ion-list radio-group [(ngModel)]="user.gender" >
           <ion-col>
                 <ion-item no-lines>
                   <ion-label color="light-gray">Male</ion-label>
