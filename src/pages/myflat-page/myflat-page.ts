@@ -4,9 +4,10 @@ import {ApartmentDataService} from '../../common/apartdata.service';
 import {UsersListPage} from '../../pages/users/users-list/users-list';
 import {ServicePage} from '../../pages/service-page/service-page';
 import { AlertController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { POINTER_EVENT_TYPE_MOUSE } from 'ionic-angular/umd/gestures/pointer-events';
+// import { Storage } from '@ionic/storage';
+// import { POINTER_EVENT_TYPE_MOUSE } from 'ionic-angular/umd/gestures/pointer-events';
 // import {LoadingControllerService} from '../../common/loadingcontrollerservice';
+import { LocalStorageService } from '../../common/local-storage-service';
 @Component({
   selector: 'myflat-page',
   templateUrl: 'myflat-page.html'
@@ -25,25 +26,39 @@ export class MyFlatPage {
   pwdiconname:string = 'md-eye-off';
   pwdfieldtype:string='password';
   constructor(private apartmentDataService:ApartmentDataService,private navCtrl: NavController, 
-    public navParams: NavParams, private alertCtrl: AlertController, private storage: Storage) {
+    public navParams: NavParams, private alertCtrl: AlertController, private localeStorage: LocalStorageService
+    ) {
 
         this.admin = this.navParams.get('admin');
 
         this.floorPlans = apartmentDataService.getFloorPlan();
-        storage.get('pin').then((val) => {
-          this.pin = val;
-        });
-        storage.get('floor').then((val) => {
-          this.floor = val;
-          this.onChangeFloor(this.floor);
-        });
-        storage.get('flat').then((val) => {
-          this.flat = val;
-        });    
 
-        storage.get('buildingId').then((val) => {
-          this.buildingId = val;
-        });            
+        localeStorage.flatLoginDetailsSubject.subscribe(data=>{
+          if(data != undefined && data != null) {
+            this.pin   = data.PIN;
+            this.floor = data.floor;
+            
+            this.buildingId = data.buildingId;
+            this.onChangeFloor(this.floor);
+            this.flat  = data.flatNumber;
+          }
+
+        })
+        localeStorage.getFlatLoginDetails();
+        // storage.get('pin').then((val) => {
+        //   this.pin = val;
+        // });
+        // storage.get('floor').then((val) => {
+        //   this.floor = val;
+        //   this.onChangeFloor(this.floor);
+        // });
+        // storage.get('flat').then((val) => {
+        //   this.flat = val;
+        // });    
+
+        // storage.get('buildingId').then((val) => {
+        //   this.buildingId = val;
+        // });            
   }
 
   getApartmentData() {
@@ -133,9 +148,10 @@ export class MyFlatPage {
   }
 
   saveDetailsInStorage() {
-    this.storage.set("flat", this.flat);
-    this.storage.set("buildingId", this.buildingId);
-    this.storage.set("floor", this.floor);
-    this.storage.set("pin", this.pin);
+    // this.storage.set("flat", this.flat);
+    // this.storage.set("buildingId", this.buildingId);
+    // this.storage.set("floor", this.floor);
+    // this.storage.set("pin", this.pin);
+    this.localeStorage.saveFlatLoginDetails(this.buildingId, this.floor, this.flat, this.pin);
   }
 }

@@ -34,12 +34,15 @@ import {RequestListComp} from '../common/request-list-comp/request-list-comp';
 import {HomePageBlock} from '../common/homepageblock/homepageblock';
 import { HomePage } from '../pages/home/homepage';
 import {RatingComponent} from '../common/rating-comp/rating-comp';
-import {ServiceType} from '../common/service-type-service';
+import {ServiceTypeService} from '../common/service-type-service';
 import { MemeberTypeService } from '../common/member-type-service';
 import { UserService } from '../common/user-service';
 import {SigninPage} from '../pages/admin/auth/signin/signin-page';
 import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-page';
 import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/request-breakdown-page';
+import { LocalStorageService } from '../common/local-storage-service';
+import { CustomLoadingController } from '../common/custom-loading-controller';
+import { SwimmingPassPage } from '../pages/users/swimming-pass/swimming-pass-page';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,8 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     AdminWorklistPage,
     CreateUserPage,
     RequestBreakdownPage,
-    RequestFilterPage
+    RequestFilterPage,
+    SwimmingPassPage
   ],
   imports: [
     BrowserModule,
@@ -96,7 +100,8 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     AdminWorklistPage,
     CreateUserPage,
     RequestBreakdownPage,
-    RequestFilterPage
+    RequestFilterPage,
+    SwimmingPassPage
   ],
   providers: [
     StatusBar,
@@ -110,9 +115,11 @@ import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/requ
     FileTransferObject,
     File,
     Camera,
-    ServiceType,
+    ServiceTypeService,
     MemeberTypeService,
-    UserService
+    UserService,
+    LocalStorageService,
+    CustomLoadingController
   ]
 })
 export class AppModule {}

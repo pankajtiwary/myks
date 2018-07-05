@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
+import { UserVO } from '../VO/user-vo';
 
 @Component({
     selector: 'user-details',
@@ -7,7 +8,7 @@ import { NavController, NavParams} from 'ionic-angular';
   })
 export class UserDetailsPage {
 
-    user:any;
+    user:UserVO;
     iconname:string;
     color:string;
     constructor(public navCtrl: NavController, public navParams: NavParams) {

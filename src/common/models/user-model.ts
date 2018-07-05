@@ -11,4 +11,5 @@ export interface User {
         downloadbleUrl?:string,
         createdDate:number, 
         memberTypeId:MEMBERTYPE
+        subscriptions?:{swimming:{startDate:number, endDate:number}}
 }

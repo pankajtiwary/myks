@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, FormControl, Validator, Validators } from '@ang
 import { NavController, NavParams } from 'ionic-angular';
 import { MyFlatPage } from '../../myflat-page/myflat-page';
 import { RequestBreakdownPage } from '../request-breakdown-page/request-breakdown-page';
-import {ServiceType} from '../../../common/service-type-service';
+import {ServiceTypeService} from '../../../common/service-type-service';
 
 @Component({
     selector: 'admin-worklist-page',
@@ -12,7 +12,7 @@ import {ServiceType} from '../../../common/service-type-service';
   export class AdminWorklistPage  {
     worklists:any[] = [];
     constructor(private navCtrl: NavController, private navParams: NavParams,
-    private serviceType: ServiceType) {
+    private serviceType: ServiceTypeService) {
         this.worklists = [
             {id:1,icon:"addperson",title:'Add/Modify Member', pendingRequest:6},
             {id:2,icon:"swimming",title:'Swimming Pass', pendingRequest:6},

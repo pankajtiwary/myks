@@ -15,11 +15,19 @@ export enum MEMBERTYPE {
 export enum PATHNAME {
     // MYKS='myks',
     PROFILES= 'myks/profiles',
-    FLATOWNERMAPPING='myks/flatownermapping'
+    FLATOWNERMAPPING='myks/flatownermapping',
+    SUBSCRIPTIONTYPE='myks/masterdata/subscriptiontype',
+    MEMBERTYPE='myks/masterdata/membertype',
+    APARTMENT='myks/masterdata/apartment',
+    SERVICETYPE='myks/masterdata/servicetype',
 }
 
 export enum MODE {
     EDIT='edit',
     CREATE='create',
     MODE='mode'
+}
+
+export enum APPCONST {
+    FLATLOGINDETAILS='flatLoginDetails'
 }

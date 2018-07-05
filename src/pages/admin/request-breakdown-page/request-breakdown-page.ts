@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {ServiceType} from '../../../common/service-type-service';
+import {ServiceTypeService} from '../../../common/service-type-service';
 
 @Component({
     selector: 'request-breakdown-page',
@@ -11,7 +11,7 @@ import {ServiceType} from '../../../common/service-type-service';
     worklists:{bldgId:number, bldgName:string, pendingRequest:number, icon:string }[] = [];
     service:any;
     constructor( private navCtrl:NavController, private navParam:NavParams,
-    private serviceType:ServiceType) {
+    private serviceType:ServiceTypeService) {
         let serviceTypeId = +this.navParam.get('serviceTypeId');
         this.service = this.serviceType.getServiceObject(serviceTypeId);
         this.worklists = [{bldgId:1, bldgName:'Aster', pendingRequest:1, icon:'aster'},

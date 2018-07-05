@@ -1,5 +1,5 @@
 import { Component, Provider,OnDestroy } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, AlertController, ModalController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { ImageUploaderService } from './image-uploader-service';
@@ -7,6 +7,9 @@ import { User } from '../../../common/models/user-model';
 import { GENDER,MEMBERTYPE,MODE } from '../../../common/models/enum';
 import { UserService } from '../../../common/user-service';
 import { MemeberTypeService } from '../../../common/member-type-service';
+import { LocalStorageService } from '../../../common/local-storage-service';
+import { UserVO } from '../VO/user-vo';
+import { SwimmingPassPage } from '../swimming-pass/swimming-pass-page';
 
 @Component({
     selector: 'create-user-page',
@@ -28,7 +31,9 @@ export class CreateUserPage implements OnDestroy {
     constructor(public navCtrl: NavController,private alertCtrl: AlertController,
         private storage: Storage, private imageUploader: ImageUploaderService,
         private userService:UserService, private navParam: NavParams, 
-        private memTypeSvc:MemeberTypeService, private toastCtrl: ToastController ) {
+        private memTypeSvc:MemeberTypeService, private toastCtrl: ToastController,
+        private localStrSvc:LocalStorageService,private modalCtrl:ModalController ) {
+
           this.memTypeSvc.memTypeMastDataSubject.subscribe(data =>{
             this.memberTypes = data;
           });
@@ -43,10 +48,20 @@ export class CreateUserPage implements OnDestroy {
         this.imageUploader.imageUploaderSubject.subscribe((url) => {
           this.user.downloadbleUrl = url;
           this.user.imageLoc=this.filePath;
-          this.userService.updateUser(this.user, this.key);
+          this.userService.updateUser(this.user, this.key,this.buildingId, this.flatNumber);
         });    
         //this is just populate the buildingId and flatNumber, required for creating user
-        this.constructFilePath();    
+        // this.constructFilePath();    
+
+        
+        localStrSvc.flatLoginDetailsSubject.subscribe(data=>{
+          if(data != undefined && data != null) {
+            this.buildingId = data.buildingId;
+            this.flatNumber  = data.flatNumber;
+          }
+
+        });
+        localStrSvc.getFlatLoginDetails();
     }
 
 
@@ -72,7 +87,7 @@ saveUser() {
       this.key = this.userService.createUser(this.user, this.buildingId, this.flatNumber);
       this.mode = MODE.EDIT;
     } else {
-      this.userService.updateUser(this.user, this.key);
+      this.userService.updateUser(this.user, this.key,this.buildingId, this.flatNumber);
       this.mode = MODE.EDIT;
     }
   
@@ -86,9 +101,10 @@ saveUser() {
       return;
     }
     this.constructFilePath();
+    this.imageUploader.getImage(this.filePath);
   }
 
-  constructFilePath() {
+  constructFilePathOld() {
     this.storage.get('buildingId').then((val) => {
       this.buildingId = val;
       this.filePath = 'myks/profiles/' + val + '/';
@@ -102,6 +118,12 @@ saveUser() {
       }) 
     
     })
+  }     
+
+  constructFilePath() {
+
+    this.filePath = 'myks/profiles/' + this.buildingId + '/' + 
+    this.flatNumber + '/' + this.key + '.jpg'; 
   }     
   
   initializeUser() {
@@ -128,5 +150,12 @@ saveUser() {
       duration: duration
     });
     toast.present();
+  }
+
+  swimmingPass() {
+    const modal = this.modalCtrl.create(SwimmingPassPage,
+    {user:this.user, key:this.key, buildingId:this.buildingId, 
+      flatNumber:this.flatNumber, parentPage:this});
+    modal.present();
   }
 }

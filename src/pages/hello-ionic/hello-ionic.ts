@@ -4,8 +4,9 @@ import * as firebase from 'firebase';
 import { Storage } from '@ionic/storage';
 import { MemeberTypeService } from '../../common/member-type-service';
 import { User } from '../../common/models/user-model';
-import { GENDER,MEMBERTYPE } from '../../common/models/enum';
+import { GENDER,MEMBERTYPE,PATHNAME } from '../../common/models/enum';
 import { UserService } from '../../common/user-service';
+import { SubscriptionType } from '../../common/models/subscriptionType';
 
 @Component({
   selector: 'page-hello-ionic',
@@ -15,7 +16,7 @@ export class HelloIonicPage implements OnDestroy {
 
   file: File;
   someTextUrl;
-  filePath:string = 'myks/profiles/';
+  // filePath:string = 'myks/profiles/';
 
   floorPlan = [
     {floorId:1,floorName:'First',  flats:[101,102,103,104]},
@@ -56,12 +57,12 @@ serviceType:{serviceTypeId:number,      title:string,icon:string }[] =  [
   this.memberTypeService.memTypeMastDataSubject.subscribe((data) =>{
     console.log(' I am inside the printMemberType of subcribe method ', data );
   });
-     this.constructFilePath();
+    //  this.constructFilePath();
   }
 
   createApartmentData() {
      let object = this.apartment;
-     let  playersRef = firebase.database().ref('myks/apartment');
+     let  playersRef = firebase.database().ref(PATHNAME.APARTMENT);
      console.log(playersRef);
      playersRef.set(object).catch(error => {
       console.log(error);
@@ -70,7 +71,7 @@ serviceType:{serviceTypeId:number,      title:string,icon:string }[] =  [
 
   createServiceTypeMasterData() {
     let object = this.serviceType;
-    let  serviceTypeRef = firebase.database().ref('myks/serviceType');
+    let  serviceTypeRef = firebase.database().ref(PATHNAME.SERVICETYPE);
     console.log(serviceTypeRef);
     serviceTypeRef.set(object).catch(error => {
      console.log(error);
@@ -86,8 +87,26 @@ serviceType:{serviceTypeId:number,      title:string,icon:string }[] =  [
                     {typeId:2, type:'Tanent'},
                     {typeId:3, type:'Relative'}
                   ];
-    let  memberTypesRef = firebase.database().ref('myks/memberTypes');   
+    let  memberTypesRef = firebase.database().ref(PATHNAME.MEMBERTYPE);   
     memberTypesRef.set(memberTypes)
+    .then(date =>{
+      console.log('Created Successfully');
+    })
+    .catch(error => {
+      console.log(error);
+     });               
+
+  }
+
+  createSubscriptionTypesMasterData() {
+    let subscriptionTypes:SubscriptionType[];
+    subscriptionTypes = [
+                    {typeId:1, name:'Swimming'},
+                    {typeId:2, name:'Gym'},
+                    {typeId:3, name:'Community Hall'}
+                  ];
+    let  subscriptionTypesRef = firebase.database().ref(PATHNAME.SUBSCRIPTIONTYPE);   
+    subscriptionTypesRef.set(subscriptionTypes)
     .then(date =>{
       console.log('Created Successfully');
     })
@@ -123,20 +142,20 @@ serviceType:{serviceTypeId:number,      title:string,icon:string }[] =  [
 
 
 
-  constructFilePath() {
-    this.storage.get('buildingId').then((val) => {
-      this.filePath = this.filePath + val + '/';
-    }).then(data => {
-      this.storage.get('flat').then((val) => {
-        this.filePath = this.filePath + val + '/';
-      }).then(() => {
-        let d = new Date();
-        let n = d.getTime();
-        this.filePath = this.filePath + n + '.jpg';
-      }) 
+  // constructFilePath() {
+  //   this.storage.get('buildingId').then((val) => {
+  //     this.filePath = this.filePath + val + '/';
+  //   }).then(data => {
+  //     this.storage.get('flat').then((val) => {
+  //       this.filePath = this.filePath + val + '/';
+  //     }).then(() => {
+  //       let d = new Date();
+  //       let n = d.getTime();
+  //       this.filePath = this.filePath + n + '.jpg';
+  //     }) 
     
-    })
-  }
+  //   })
+  // }
 
   printMemberType() {
     console.log(' I am outside start the printMemberType of subcribe method ');
@@ -165,8 +184,11 @@ serviceType:{serviceTypeId:number,      title:string,icon:string }[] =  [
       downloadbleUrl:'assets/imgs/man.changing',
       imageLoc:'My New Location'
     }
-    this.userSvc.updateUser(user, key);
+    // this.userSvc.updateUser(user, key);
   }
 
+  getAllUsers() {
+    this.userSvc.getAllUsers(4,503);
+  }
 }
 

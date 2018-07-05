@@ -1,6 +1,8 @@
-export class ServiceType {
+import { ServiceType } from '../common/models/servicetype';
 
-    serviceType:{serviceTypeId:number, title:string,icon:string }[] = [];
+export class ServiceTypeService {
+
+    serviceType:ServiceType[] = [];
     constructor() {
         this.serviceType = [
             {serviceTypeId:1,icon:"addperson",title:'Add/Modify Member'},

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase';
 import "rxjs/Rx";
-import { Subject } from "rxjs/Subject";
+import { Subject } from 'rxjs/Subject';
+import { PATHNAME } from '../common/models/enum';
 
 @Injectable()
 export class MemeberTypeService {
@@ -12,13 +13,13 @@ export class MemeberTypeService {
     public memTypeMastDataSubject:Subject<{typeId:number,type:string}[]> = new Subject();
 
     constructor(private storage:Storage) {
-        console.log('I am insidet the constructor ');
+        // console.log('I am insidet the constructor ');
         // this.getMemberTypeMasterData();
 
     }
 
     getMemberTypeMasterData() {
-        console.log('I am insidet the getMemberTypeMasterData ');
+        // console.log('I am insidet the getMemberTypeMasterData ');
         if(this.memberTypeMasterData) {
            this.memTypeMastDataSubject.next(this.memberTypeMasterData);
         } else {
@@ -30,7 +31,7 @@ export class MemeberTypeService {
     }
 
     populateItfromLocalStorage() {
-        console.log('I am insidet the populateItfromLocalStorage ');
+        // console.log('I am insidet the populateItfromLocalStorage ');
 
         this.storage.get('memberTypeMasterData').then((val) => {
             if(val != undefined && val != null) {
@@ -47,10 +48,10 @@ export class MemeberTypeService {
 
     populateItfromRemoteStorage() {
 
-        console.log('I am insidet the populateItfromRemoteStorage ');
-        firebase.database().ref('myks/memberTypes').once('value').then((snapshot) =>{
+        // console.log('I am insidet the populateItfromRemoteStorage ');
+        firebase.database().ref(PATHNAME.MEMBERTYPE).once('value').then((snapshot) =>{
             this.memberTypeMasterData = snapshot.val();
-            console.log('populateItfromRemoteStorage ', this.memberTypeMasterData);
+            // console.log('populateItfromRemoteStorage ', this.memberTypeMasterData);
             this.memTypeMastDataSubject.next(this.memberTypeMasterData);
         }
         ).catch(

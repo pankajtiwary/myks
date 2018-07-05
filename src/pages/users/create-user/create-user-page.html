@@ -84,6 +84,33 @@
           </ion-col>
           
         </ion-row>
+        <ion-row *ngIf="user.subscriptions && mode=='edit'">
+            <ion-item>
+                <ion-col>
+                    <p style='text-align: center'> Swimming Pool Subscription</p>
+                </ion-col>
+            </ion-item>
+        </ion-row>
+        <ion-row *ngIf="user.subscriptions">
+            <ion-col>
+                <ion-item>
+                    <p>Start Date</p>
+                    <p>{{user.subscriptions.swimming.startDate | date}}</p>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                        <p>End Date</p>
+                        <p>{{user.subscriptions.swimming.endDate | date}}</p>
+                </ion-item>    
+            </ion-col>
+
+        </ion-row>
+        <ion-row *ngIf="mode=='edit'">
+            <ion-col style="text-align: center;">
+                    <button ion-button (click)="swimmingPass()">Add/Update Subscription</button>
+            </ion-col>
+        </ion-row>         
         
       <!-- <ion-row>
         <ion-col>
