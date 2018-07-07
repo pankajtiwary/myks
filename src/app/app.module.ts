@@ -44,6 +44,8 @@ import { LocalStorageService } from '../common/local-storage-service';
 import { CustomLoadingController } from '../common/custom-loading-controller';
 import { SwimmingPassPage } from '../pages/users/swimming-pass/swimming-pass-page';
 
+import { ImageUploaderService } from '../pages/users/create-user/image-uploader-service';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -119,7 +121,8 @@ import { SwimmingPassPage } from '../pages/users/swimming-pass/swimming-pass-pag
     MemeberTypeService,
     UserService,
     LocalStorageService,
-    CustomLoadingController
+    CustomLoadingController,
+    ImageUploaderService
   ]
 })
 export class AppModule {}

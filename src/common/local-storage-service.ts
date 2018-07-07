@@ -16,10 +16,15 @@ export class LocalStorageService {
     }
 
     getFlatLoginDetails() {
-        if(this.flatLoginDetails) {
-            this.flatLoginDetailsSubject.next(this.flatLoginDetails);
-        } else {
-            this.constructFlatLoginDetails();
+        try {
+            if(this.flatLoginDetails) {
+                this.flatLoginDetailsSubject.next(this.flatLoginDetails);
+            } else {
+                this.constructFlatLoginDetails();
+            }
+        } catch(e) {
+            alert(e);
+            console.log(e);
         }
     }
 

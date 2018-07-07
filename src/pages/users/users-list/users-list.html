@@ -10,11 +10,12 @@
 
 <ion-content>
     <ion-grid>
-      <button ion-item *ngFor="let user of users" (click)="userTapped(user)">
+      <button ion-item *ngFor="let user of users" (click)="userTapped(user)" 
+      [hidden]="!(admin === true  || user.active === true)">
       <ion-row>
          <ion-col>
              <div>
-                <img src={{user.downloadbleUrl}} style="height: 100px; width: 100px; border-radius: 50%; "/>
+                <img src={{user.downloadbleUrl}} style="height: 100px; width: 100px; border-radius: 50%; object-fit: cover;"/>
              </div>
          </ion-col>   
          <ion-col>
@@ -23,10 +24,10 @@
                 {{user.firstName}} {{user.lastName}}
                 <br>
                 {{user.gender}}
-                <!-- <br>
-                {{user.startDate}}  To  {{user.endDate}} -->
                 <br>
                 {{user.type}}
+                
+                <p *ngIf='admin === true'>Active : {{user.active}}</p>
             </div>
           </ion-col>
           <ion-col>

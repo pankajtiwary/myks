@@ -11,7 +11,8 @@
     <ion-grid>
         <ion-row style="height: 200px;">
             <ion-col style="text-align: center; background-color: #F5F5F5;">
-                <img src="{{user.downloadbleUrl}}" style="border-radius: 50%;"/>
+                <img src="{{user.downloadbleUrl}}" style="border-radius: 50%;object-fit: cover;
+                height: 190px; width: 190px;"/>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -35,9 +36,31 @@
                 </ion-row>
             </ion-col>
             <ion-col>
-                <ion-icon name="{{iconname}}" color={{color}} style="padding-top:20px;"></ion-icon>
+                <ion-icon name="{{iconname}}" color={{color}} style="padding-top:0px;"></ion-icon>
             </ion-col>
         </ion-row>
+        <ion-row *ngIf="user.subscriptions">
+            <ion-item>
+                <ion-col>
+                    <p style='text-align: center'> Swimming Pool Subscription</p>
+                </ion-col>
+            </ion-item>
+        </ion-row>
+        <ion-row *ngIf="user.subscriptions">
+            <ion-col>
+                <ion-item>
+                    <p>Start Date</p>
+                    <p>{{user.subscriptions.swimming.startDate | date}}</p>
+                </ion-item>
+            </ion-col>
+            <ion-col>
+                <ion-item>
+                        <p>End Date</p>
+                        <p>{{user.subscriptions.swimming.endDate | date}}</p>
+                </ion-item>    
+            </ion-col>
+
+        </ion-row>        
     </ion-grid>
     <hr>
 </ion-content>

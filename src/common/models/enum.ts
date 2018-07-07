@@ -31,3 +31,10 @@ export enum MODE {
 export enum APPCONST {
     FLATLOGINDETAILS='flatLoginDetails'
 }
+
+export enum STATUS {
+    EXPIRED='expired',
+    ABOUTTOEXPIRE='aboutToExpired',
+    LIVE='live'
+
+}

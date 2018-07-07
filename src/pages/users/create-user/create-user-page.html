@@ -18,7 +18,8 @@
                 <ion-col style="text-align: center; background-color: #F5F5F5;">
                     <div>
                         <div>
-                            <img [src]="user.downloadbleUrl" style="border-radius: 50%; height: 100px;"/>
+                            <img [src]="user.downloadbleUrl" style="border-radius: 50%; height: 100px;
+                            width:100px;object-fit: cover;"/>
                         </div>
   
                         <div style="position: relative; top:-40px; left: 50px;">
@@ -52,12 +53,7 @@
                 <ion-input type="text" [(ngModel)]="user.mobileNumber"></ion-input>
             </ion-item>
           </ion-col>
-          <!-- <ion-col>
-              <ion-item no-lines>
-                  <ion-label floating>Last Name</ion-label>
-                  <ion-input type="text"></ion-input>
-              </ion-item>
-          </ion-col> -->
+
           <ion-col>
               <ion-item>
                   <ion-label floating >Type</ion-label>
@@ -84,6 +80,16 @@
           </ion-col>
           
         </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label>Activate</ion-label>
+                    <ion-toggle [(ngModel)]='user.active'></ion-toggle>
+                </ion-item>
+            </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+        
         <ion-row *ngIf="user.subscriptions && mode=='edit'">
             <ion-item>
                 <ion-col>
@@ -111,20 +117,8 @@
                     <button ion-button (click)="swimmingPass()">Add/Update Subscription</button>
             </ion-col>
         </ion-row>         
-        
-      <!-- <ion-row>
-        <ion-col>
-                <p>{{imageURI}}</p>
-                <button ion-button color="secondary" (click)="getImage()">Get Image</button>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-col>
-                  <button ion-button (click)="uploadFile()">Upload</button>
-          </ion-col>
-        </ion-row> -->
+    
   
     </ion-grid>
-
 
   </ion-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
 import { UserDetailsPage } from '../user-details/user-details'
 import { LoadingControllerService } from '../../../common/loadingcontrollerservice';
@@ -12,11 +12,13 @@ import { LocalStorageService } from '../../../common/local-storage-service';
 import { UserVO } from '../VO/user-vo';
 import { MemeberTypeService } from '../../../common/member-type-service';
 import { CustomLoadingController } from '../../../common/custom-loading-controller';
+import { Subscription } from 'rxjs/Subscription';
+import { STATUS } from '../../../common/models/enum';
 @Component({
     selector: 'users-list',
     templateUrl: 'users-list.html'
   })
-export class UsersListPage {
+export class UsersListPage implements OnDestroy,OnInit {
 
   users:UserVO[] = [];
   rawUserFromDb:any;
@@ -25,31 +27,19 @@ export class UsersListPage {
   flatNumber:number;
   memberTypeMasterData:{typeId:number,type:string}[];
 
+  memTypeMastDataSubscription: Subscription;
+  getAllUsersSubscription: Subscription;
+  flatLoginDetailsSubscription: Subscription;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
-     private loadingCrt:LoadingControllerService, private userSvs: UserService,
+     private userSvs: UserService,
     private localStrgSvc:LocalStorageService, private memTypeService:MemeberTypeService,
-    private customLoadingController:CustomLoadingController) {
+    private customLoadingCtrl:CustomLoadingController) {
     this.admin = this.navParams.get('admin');
     
-    memTypeService.memTypeMastDataSubject.subscribe((data) => {
-      // customLoadingController.show('Please Wait ....');
-      // console.log('memTypeMastDataSubject ', data);
-      this.memberTypeMasterData = data;
-      localStrgSvc.getFlatLoginDetails();
-    });
-    userSvs.getAllUsersSubject.subscribe((data)=> {
-      this.rawUserFromDb = data;
-      this.convertObjectToArray(data);
-      // customLoadingController.hide();
-    });
-    localStrgSvc.flatLoginDetailsSubject.subscribe((data)=> {
-      this.buildingId = data.buildingId;
-      this.flatNumber = data.flatNumber;
-      this.getAllUsers();
-    });
-    memTypeService.getMemberTypeMasterData();
-
-    
+   
+  }
+  ngOnInit() {
   }
 
   getAllUsers() {
@@ -65,18 +55,18 @@ export class UsersListPage {
   }
 
   getIconName(status:string) {
-    if(status === "expired") {
+    if(status === STATUS.EXPIRED) {
       return "thumbs-down";
-    }else if(status === "aboutToExpired") {
+    }else if(status === STATUS.ABOUTTOEXPIRE) {
       return "alert";
     } else {
       return "thumbs-up";
     }
   }
   getColorName(status) {
-    if(status === "expired") {
+    if(status === STATUS.EXPIRED) {
       return "danger";
-    }else if(status === "aboutToExpired") {
+    }else if(status === STATUS.ABOUTTOEXPIRE) {
       return "warn";
     } else {
       return "secondary";
@@ -93,18 +83,83 @@ export class UsersListPage {
     for (var property in data) {
       if (data.hasOwnProperty(property)) {
           let type:string; //= EnumsUtility.parseMemberType(data['memberTypeId']);
-          for(let memberType of this.memberTypeMasterData) {
-            if(memberType.typeId === data[property]['memberTypeId']) {
+          for(let i=0;i<this.memberTypeMasterData.length;i++) {
+            let memberType = this.memberTypeMasterData[i];
+            // console.log('XXXXXXXXXXXXXXXX ', memberType , data[property]['memberTypeId']);
+            if(memberType.typeId == data[property]['memberTypeId']) {
               type=memberType.type;
+              break;
             }
-            break;
+            
           }
-          let userVO:UserVO = {...data[property],status:'expired', key:property, type:type};
+          let status:string = this.getStatus(data[property]);
+          let userVO:UserVO = {...data[property],status:status, key:property, type:type};
           // console.log(data[property]);
           usersTemp.push(userVO);
       }
     }
     this.users = usersTemp;
+    this.customLoadingCtrl.hide();
+  }
+
+  ngOnDestroy() {
+    // this.memTypeMastDataSubscription.unsubscribe();
+    // this.getAllUsersSubscription.unsubscribe();
+    // this.flatLoginDetailsSubscription.unsubscribe();
+
+  }
+
+  getStatus(user:User) : string {
+    if(user.subscriptions) {
+        return this.getDays(user.subscriptions.swimming.startDate, user.subscriptions.swimming.endDate);
+    } else {
+      return 'expired';
+    }
+  }
+
+  private getDays(startDate:number, endDate:number):string {
+      let currentDate = new Date().getTime();
+      if(currentDate >= endDate) {
+        return 'expired';
+      }
+      let days = Math.ceil((endDate-currentDate)/(1000*3600*24));
+      if(days <=7) {
+        return 'aboutToExpired';
+      } else {
+        return 'live';
+      }
+  }
+
+  ionViewWillLeave() {
+    this.memTypeMastDataSubscription.unsubscribe();
+    this.getAllUsersSubscription.unsubscribe();
+    this.flatLoginDetailsSubscription.unsubscribe();
+    // console.log('I am in ionViewWillLeave ionViewWillLeave ionViewWillLeave UsersListPage');
+  }
+
+  ionViewWillEnter() {
+
+    this.memTypeMastDataSubscription = this.memTypeService.memTypeMastDataSubject.subscribe((data) => {
+      
+      this.memberTypeMasterData = data;
+      this.localStrgSvc.getFlatLoginDetails();
+    });
+    this.getAllUsersSubscription = this.userSvs.getAllUsersSubject.subscribe((data)=> {
+      this.rawUserFromDb = data;
+      this.convertObjectToArray(data);
+    });
+    this.flatLoginDetailsSubscription = this.localStrgSvc.flatLoginDetailsSubject.subscribe((data)=> {
+      this.buildingId = data.buildingId;
+      this.flatNumber = data.flatNumber;
+      this.getAllUsers();
+    });
+
+  }
+  ionViewDidEnter() {
+    this.customLoadingCtrl.show('Loading, Pls Wait ...');
+    this.memTypeService.getMemberTypeMasterData();    
+
+    
   }
 
 }

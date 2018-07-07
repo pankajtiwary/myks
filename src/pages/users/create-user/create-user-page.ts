@@ -10,11 +10,12 @@ import { MemeberTypeService } from '../../../common/member-type-service';
 import { LocalStorageService } from '../../../common/local-storage-service';
 import { UserVO } from '../VO/user-vo';
 import { SwimmingPassPage } from '../swimming-pass/swimming-pass-page';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'create-user-page',
-    templateUrl: 'create-user-page.html',
-    providers: [ImageUploaderService]
+    templateUrl: 'create-user-page.html'
+    // providers: [ImageUploaderService]
   })
 export class CreateUserPage implements OnDestroy {
 
@@ -28,42 +29,57 @@ export class CreateUserPage implements OnDestroy {
     filePath:string;
     currentImage:string = 'assets/imgs/man.png';
 
+    memTypeMastDataSubscription:Subscription; 
+    imageUploaderSubscription:Subscription; 
+    flatLoginDetailsSubscription:Subscription;
+    
+
     constructor(public navCtrl: NavController,private alertCtrl: AlertController,
         private storage: Storage, private imageUploader: ImageUploaderService,
         private userService:UserService, private navParam: NavParams, 
         private memTypeSvc:MemeberTypeService, private toastCtrl: ToastController,
         private localStrSvc:LocalStorageService,private modalCtrl:ModalController ) {
+          this.initializeUser();
 
-          this.memTypeSvc.memTypeMastDataSubject.subscribe(data =>{
-            this.memberTypes = data;
-          });
-          this.memTypeSvc.getMemberTypeMasterData();
-        this.mode = this.navParam.get(MODE.MODE);
-        if(this.mode === MODE.CREATE) {
-            this.initializeUser();
-        } else if(this.mode === MODE.EDIT) {
-          this.user = this.navParam.get('user');
-          this.key = this.navParam.get('key');
+    }
+     
+    ionViewWillEnter () {
+
+      // console.log('XXXXXXXXXXXXXXXXXXXXX ionViewDidEnter CreateUserPage '  );
+      this.memTypeMastDataSubscription = this.memTypeSvc.memTypeMastDataSubject.subscribe(data =>{
+        this.memberTypes = data;
+      });
+
+      this.memTypeSvc.getMemberTypeMasterData();
+      this.mode = this.navParam.get(MODE.MODE);
+      if(this.mode === MODE.CREATE) {
+          this.initializeUser();
+      } else if(this.mode === MODE.EDIT) {
+        this.user = this.navParam.get('user');
+        // console.log('I AM INSIDE ', this.user);
+        this.key = this.navParam.get('key');
+      }
+      this.imageUploaderSubscription = this.imageUploader.imageUploaderSubject.subscribe((url) => {
+        this.user.downloadbleUrl = url;
+        this.user.imageLoc=this.filePath;
+        this.userService.updateUser(this.user, this.key,this.buildingId, this.flatNumber);
+      });    
+      
+      this.flatLoginDetailsSubscription= this.localStrSvc.flatLoginDetailsSubject.subscribe(data=>{
+        if(data != undefined && data != null) {
+          this.buildingId = data.buildingId;
+          this.flatNumber  = data.flatNumber;
         }
-        this.imageUploader.imageUploaderSubject.subscribe((url) => {
-          this.user.downloadbleUrl = url;
-          this.user.imageLoc=this.filePath;
-          this.userService.updateUser(this.user, this.key,this.buildingId, this.flatNumber);
-        });    
-        //this is just populate the buildingId and flatNumber, required for creating user
-        // this.constructFilePath();    
 
-        
-        localStrSvc.flatLoginDetailsSubject.subscribe(data=>{
-          if(data != undefined && data != null) {
-            this.buildingId = data.buildingId;
-            this.flatNumber  = data.flatNumber;
-          }
-
-        });
-        localStrSvc.getFlatLoginDetails();
+      });      
+      this.localStrSvc.getFlatLoginDetails();
     }
 
+    ionViewWillLeave() {
+      this.flatLoginDetailsSubscription.unsubscribe();
+      this.imageUploaderSubscription.unsubscribe();
+      this.memTypeMastDataSubscription.unsubscribe();
+    }
 
       showAlert() {
         const alert = this.alertCtrl.create({
@@ -140,7 +156,6 @@ saveUser() {
   }
 
   ngOnDestroy(){
-    this.imageUploader.imageUploaderSubject.unsubscribe();
 
   }  
 
