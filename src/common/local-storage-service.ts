@@ -28,6 +28,10 @@ export class LocalStorageService {
         }
     }
 
+    getDirectFlatLoginDetails() {
+        return this.flatLoginDetails;
+    }
+
     saveFlatLoginDetails(buildingId:number, floor:number, flatNumber:number, PIN:string) {
         if( this.flatLoginDetails == undefined || this.flatLoginDetails == null) {
             this.flatLoginDetails = {flatNumber:0, buildingId:0,floor:0, PIN:''};

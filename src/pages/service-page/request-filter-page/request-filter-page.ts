@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams} from 'ionic-angular';
-import { MyFamilyService } from '../../../common/myfamily.service';
+// import { MyFamilyService } from '../../../common/myfamily.service';
 import { AlertController } from 'ionic-angular';
 
 @Component({

@@ -26,7 +26,7 @@ import { RequestFilterPage } from '../pages/service-page/request-filter-page/req
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {ApartmentDataService} from '../common/apartdata.service';
-import {MyFamilyService} from '../common/myfamily.service';
+// import {MyFamilyService} from '../common/myfamily.service';
 import { IonicStorageModule } from '@ionic/storage';
 import { ApartmentName } from '../common/apartmentname/apartmentname';
 import {LoadingControllerService} from '../common/loadingcontrollerservice';
@@ -37,6 +37,7 @@ import {RatingComponent} from '../common/rating-comp/rating-comp';
 import {ServiceTypeService} from '../common/service-type-service';
 import { MemeberTypeService } from '../common/member-type-service';
 import { UserService } from '../common/user-service';
+import { ManageServices } from '../common/manage-services';
 import {SigninPage} from '../pages/admin/auth/signin/signin-page';
 import {AdminWorklistPage} from '../pages/admin/admin-worklist/admin-worklist-page';
 import { RequestBreakdownPage } from '../pages/admin/request-breakdown-page/request-breakdown-page';
@@ -111,7 +112,7 @@ import { ImageUploaderService } from '../pages/users/create-user/image-uploader-
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApartmentDataService,
     LoadingControllerService,
-    MyFamilyService,
+    // MyFamilyService,
     FileTransfer,
     // FileUploadOptions,
     FileTransferObject,
@@ -122,7 +123,8 @@ import { ImageUploaderService } from '../pages/users/create-user/image-uploader-
     UserService,
     LocalStorageService,
     CustomLoadingController,
-    ImageUploaderService
+    ImageUploaderService,
+    ManageServices
   ]
 })
 export class AppModule {}

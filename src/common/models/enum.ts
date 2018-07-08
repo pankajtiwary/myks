@@ -20,6 +20,7 @@ export enum PATHNAME {
     MEMBERTYPE='myks/masterdata/membertype',
     APARTMENT='myks/masterdata/apartment',
     SERVICETYPE='myks/masterdata/servicetype',
+    SERVICES='myks/services'
 }
 
 export enum MODE {
@@ -37,4 +38,9 @@ export enum STATUS {
     ABOUTTOEXPIRE='aboutToExpired',
     LIVE='live'
 
+}
+export enum SERVICESTATUS {
+    OPEN='open',
+    RESOLVED='resolved',
+    DIFFERED='differed'
 }

@@ -20,7 +20,7 @@ export class ServicePage {
         }else if(nextPage === 'myallrequest') {
             this.navCtrl.push(RequestListPage);
         } else {
-            this.navCtrl.push(RequestPage, {service:nextPage});
+            this.navCtrl.push(RequestPage, {serviceType:nextPage});
         }
     }
 
