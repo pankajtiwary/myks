@@ -9,7 +9,7 @@
 
 
 <ion-content>
-    <ion-grid>
+    <ion-grid *ngIf="users != undefined && users.length > 0">
       <button ion-item *ngFor="let user of users" (click)="userTapped(user)" 
       [hidden]="!(admin === true  || user.active === true)">
       <ion-row>
@@ -38,6 +38,14 @@
         </ion-row>
       </button>
     </ion-grid>
+    <ion-item *ngIf="users == undefined || users.length == 0">
+      <p style='text-align: center'>
+        No Members found
+      </p>
+      <p style='text-align: center'>
+        Pls ask Admin to add members
+      </p>      
+    </ion-item>
     <ion-item ion-item *ngIf="admin===true">
         <button ion-button full round color="primary" (click)="addNewMember()">
           <span style="padding-right: 10px;">Add New Member </span>

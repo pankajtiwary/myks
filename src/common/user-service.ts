@@ -57,13 +57,10 @@ export class UserService {
         firebase.database().ref().child(mappingPath).once('value').then((snapshot) =>{
             let users:User[] = [];
             if(snapshot != undefined && snapshot.val() != undefined) {
-                // console.log(snapshot.val());
-                // for(var prop of snapshot.val()) {
-
-                // }
                 this.getAllUsersSubject.next(snapshot.val())
             }else {
-                console.log('snapshot is null or undefined');
+                console.log('snapshot is null or undefined ', snapshot.val());
+                this.getAllUsersSubject.next(null);
             }
         })
     }

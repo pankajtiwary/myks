@@ -42,6 +42,41 @@ export class UsersListPage implements OnDestroy,OnInit {
   ngOnInit() {
   }
 
+
+  ionViewWillEnter() {
+
+    this.memTypeMastDataSubscription = this.memTypeService.memTypeMastDataSubject.subscribe((data) => {
+      
+      this.memberTypeMasterData = data;
+      this.localStrgSvc.getFlatLoginDetails();
+    });
+    this.getAllUsersSubscription = this.userSvs.getAllUsersSubject.subscribe((data)=> {
+      // this.rawUserFromDb = data;
+      if(data == undefined || data == null) {
+        
+      } else {
+        this.rawUserFromDb = data;
+        this.convertObjectToArray(data);
+      }
+      this.customLoadingCtrl.hide();
+    });
+    this.flatLoginDetailsSubscription = this.localStrgSvc.flatLoginDetailsSubject.subscribe((data)=> {
+      this.buildingId = data.buildingId;
+      this.flatNumber = data.flatNumber;
+      this.getAllUsers();
+    });
+
+  }
+  ionViewDidEnter() {
+    this.customLoadingCtrl.show('Loading, Pls Wait ...');
+    this.memTypeService.getMemberTypeMasterData();     
+  }
+  ionViewWillLeave() {
+    this.memTypeMastDataSubscription.unsubscribe();
+    this.getAllUsersSubscription.unsubscribe();
+    this.flatLoginDetailsSubscription.unsubscribe();
+    // console.log('I am in ionViewWillLeave ionViewWillLeave ionViewWillLeave UsersListPage');
+  }
   getAllUsers() {
     this.userSvs.getAllUsers(this.buildingId,this.flatNumber);
   }   
@@ -99,7 +134,7 @@ export class UsersListPage implements OnDestroy,OnInit {
       }
     }
     this.users = usersTemp;
-    this.customLoadingCtrl.hide();
+    
   }
 
   ngOnDestroy() {
@@ -130,36 +165,6 @@ export class UsersListPage implements OnDestroy,OnInit {
       }
   }
 
-  ionViewWillLeave() {
-    this.memTypeMastDataSubscription.unsubscribe();
-    this.getAllUsersSubscription.unsubscribe();
-    this.flatLoginDetailsSubscription.unsubscribe();
-    // console.log('I am in ionViewWillLeave ionViewWillLeave ionViewWillLeave UsersListPage');
-  }
-
-  ionViewWillEnter() {
-
-    this.memTypeMastDataSubscription = this.memTypeService.memTypeMastDataSubject.subscribe((data) => {
-      
-      this.memberTypeMasterData = data;
-      this.localStrgSvc.getFlatLoginDetails();
-    });
-    this.getAllUsersSubscription = this.userSvs.getAllUsersSubject.subscribe((data)=> {
-      this.rawUserFromDb = data;
-      this.convertObjectToArray(data);
-    });
-    this.flatLoginDetailsSubscription = this.localStrgSvc.flatLoginDetailsSubject.subscribe((data)=> {
-      this.buildingId = data.buildingId;
-      this.flatNumber = data.flatNumber;
-      this.getAllUsers();
-    });
-
-  }
-  ionViewDidEnter() {
-    this.customLoadingCtrl.show('Loading, Pls Wait ...');
-    this.memTypeService.getMemberTypeMasterData();    
-
-    
-  }
+ 
 
 }

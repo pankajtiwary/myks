@@ -53,7 +53,7 @@ export class MyApp {
     // set our app's pages
     this.pages = [
       { title: 'My Society', component: HomePage, icon:"home" },
-      { title: 'Rules & Timings', component: HelloIonicPage, icon:"time" },
+      // { title: 'Rules & Timings', component: HelloIonicPage, icon:"time" },
       // { title: 'Swimming Pool Timings', component: ListPage, icon:"" },
       { title: 'My Flat', component: MyFlatPage, icon:"paper"},
       { title: 'Notice Board', component: NoticeBoardPage, icon:"notifications" },
